@@ -53,7 +53,7 @@ else{
    var finalres = value1+''+res;
    document.getElementById("display").value = val+finalres;
    
-   //alert(document.getElementById("display").value);
+   alert(document.getElementById("display").value);
    document.getElementById("display").value = '';
   }
 
