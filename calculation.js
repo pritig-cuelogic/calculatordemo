@@ -3,9 +3,7 @@ function sendValue(value1){
 var data = sessionStorage.getItem('fopr');
 var oprat = sessionStorage.getItem('opr');
 var data2 = sessionStorage.getItem('secopr');
-//sessionStorage.removeItem('fopr');
-//sessionStorage.removeItem('secopr');
-//sessionStorage.removeItem('opr');
+
 console.log(oprat);
 console.log(data);
 console.log(data2);
@@ -54,7 +52,7 @@ else{
    document.getElementById("display").value = val+finalres;
    
    alert(document.getElementById("display").value);
-   document.getElementById("display").value = '';
+   document.getElementById("display").value = "";
   }
 
 
