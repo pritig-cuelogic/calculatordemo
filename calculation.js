@@ -10,7 +10,7 @@ console.log(data2);
  
 
 
- var n2,op ;
+ var n2,op, res ;
  if(value1 != '=' || value1 != '+' || value1 != '-' || value1 != 'x' || value1 != '/' || value1 != 'C'){
   if(oprat == null){
   if(data != null ){
@@ -51,11 +51,11 @@ else{
    var finalres = value1+''+res;
    document.getElementById("display").value = val+finalres;
    
-   alert(document.getElementById("display").value);
-   document.getElementById("display").value = "";
+   //alert(document.getElementById("display").value);
+   
   }
 
-
+if(res == undefined){
  if(val){
  
   document.getElementById("display").value = val+value1;
@@ -64,7 +64,7 @@ else{
 else{
 document.getElementById("display").value = value1;
 }
-
+}
 if(value1 == 'C'){
  document.getElementById("display").value = '';
  sessionStorage.removeItem('opr');
@@ -75,8 +75,7 @@ if(value1 == 'C'){
 function operate(val1,oprat,val2){
 val1 = parseInt(val1);
 val2 = parseInt(val2);
-//console.log(typeof(val1));
-//console.log(typeof(val2));
+
 if(oprat == '+'){
   return val1 + val2;
 }
