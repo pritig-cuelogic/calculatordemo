@@ -68,6 +68,8 @@ document.getElementById("display").value = value1;
 if(value1 == 'C'){
  document.getElementById("display").value = '';
  sessionStorage.removeItem('opr');
+ sessionStorage.removeItem('fopr');
+   sessionStorage.removeItem('secopr');
 }
 
 }
