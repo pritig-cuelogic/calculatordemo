@@ -1,93 +1,46 @@
+var arr = [];
+var arr1 = [];
+
 function sendValue(value1){
- //console.log(value1);
-var data = sessionStorage.getItem('fopr');
-var oprat = sessionStorage.getItem('opr');
-var data2 = sessionStorage.getItem('secopr');
-
-console.log(oprat);
-console.log(data);
-console.log(data2);
- 
-
-
- var n2,op, res ;
- if(value1 != '=' || value1 != '+' || value1 != '-' || value1 != 'x' || value1 != '/' || value1 != 'C'){
-  if(oprat == null){
-  if(data != null ){
-  n1 = ''+data+value1;
-  }
-  else {
-   n1 = ''+value1;
-  }
-  }
-else{
-	if(data2 != null ){
-  n1 = ''+data2+value1;
-  }
-  else {
-   n1 = ''+value1;
-  }
+var textval = document.getElementById("display").value;
+if(textval !=''){
+  arr.push(textval);
+  document.getElementById("display").value = '';
 }
-  n2 = parseInt(n1);
-  if(oprat != null) {
- sessionStorage.setItem('secopr', n2);
-}
-  else{
-   sessionStorage.setItem('fopr', n2);
-  }
- 
- }
- if( value1 == '+' || value1 == '-' || value1 == 'x' || value1 == '/'){
-  op = value1;
-  sessionStorage.setItem('opr', op);
-  
- }
-  var val = document.getElementById("display").value ;
- if(value1 == '='){
-    res = operate(data,oprat,data2);
-   sessionStorage.removeItem('fopr');
-   sessionStorage.removeItem('secopr');
-   sessionStorage.removeItem('opr');
-   var finalres = value1+''+res;
-   document.getElementById("display").value = val+finalres;
-   
-   //alert(document.getElementById("display").value);
-   
-  }
+if(value1 != '='){
 
-if(res == undefined){
- if(val){
- 
-  document.getElementById("display").value = val+value1;
- 
+  arr.push(value1);
+  var html1 = document.getElementById("calculation");
+  html1.innerHTML = html1.innerHTML + value1;
+  console.log(arr);
 }
 else{
-document.getElementById("display").value = value1;
+  var elm1 = '';
+  arr.forEach(function(item,index){
+    elm1 = elm1+item;
+  });
+  arr1.push(elm1);
+  arr = [];
+  document.getElementById("calculation").innerHTML = "";
+   var node = document.getElementById("calculation");
+   arr1.forEach(function(item,index){
+   
+    node.innerHTML = node.innerHTML+"<div onclick='getId(this.innerHTML);' id='item"+index+"' >"+item+"</div>";
+   });
 }
-}
-if(value1 == 'C'){
- document.getElementById("display").value = '';
- sessionStorage.removeItem('opr');
- sessionStorage.removeItem('fopr');
-   sessionStorage.removeItem('secopr');
-}
+
 
 }
 
-function operate(val1,oprat,val2){
-val1 = parseInt(val1);
-val2 = parseInt(val2);
+function getId(exp){
+ 
+  document.getElementById("display").value = '';
+  document.getElementById("display").value = eval(exp);
+}
 
-if(oprat == '+'){
-  return val1 + val2;
+function deleteExp(){
+  arr1 = [];
+  document.getElementById("display").value = '';
+  document.getElementById("calculation").innerHTML = "";
 }
-if(oprat == '-'){
-  return val1 - val2;
-}
-if(oprat == 'x'){
-  return val1 * val2;
-}
-if(oprat == '/'){
-  return val1 / val2;
-}
-}
+
