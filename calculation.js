@@ -44,3 +44,4 @@ function deleteExp(){
   document.getElementById("calculation").innerHTML = "";
 }
 
+// we can also store data on local browser using sessionStorage.setItem('fopr', n2);
