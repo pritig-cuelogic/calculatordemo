@@ -48,7 +48,8 @@ var res2 = res1.split(",");
       }
     }
     if(n1 != undefined && n2 != undefined && op != undefined ){
-        cres = doOperations(n1,n2,op); 
+        var cres1 = doOperations(n1,n2,op); 
+        cres = cres1();
         n1 = cres;
         n2 = undefined;
     }
@@ -82,11 +83,12 @@ function doOperations(n1,n2,op){
         result =  n1 / n2;
         break;
       }
+      return result;
     }
 
 
-  operation();
-  return result;
+  //operation();
+  return operation;
 }
 
 // we can also store data on local browser using sessionStorage.setItem('fopr', n2);
