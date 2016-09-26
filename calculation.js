@@ -34,64 +34,85 @@ else{
 function getId(html){
 var n1,n2,op, cres;
 var res1= html.match(/(\d+|[^\d]+)/g).join(',');
-var res2 = res1.split(","); 
+var res2 = res1.split(",");
+
+var calc = new  Calculator(res2[0]);
+
   for(var i=0; i<res2.length; i++){
     if(isNaN(res2[i])){
       op = res2[i];
     }
     else{
       if(i==0){
-         n1 = res2[i];
+         //n1 = res2[i];
       }
       else{
         n2 = res2[i];
       }
     }
-    if(n1 != undefined && n2 != undefined && op != undefined ){
-        var cres1 = doOperations(n1,n2,op); 
-        cres = cres1();
-        n1 = cres;
+    if(n2 != undefined && op != undefined ){
+        if(op == '+'){
+          cres = calc.add(n2);
+          //console.log(calc.add(n2));
+        }
+        if(op == '-'){
+         cres = calc.subtract(n2);
+         
+        }
+        if(op == '*'){
+         cres = calc.multiply(n2);
+         
+        }
+        if(op == '/'){
+         cres = calc.devide(n2);
+         
+        }
+
         n2 = undefined;
     }
   }
+ 
 document.getElementById("display").value = '';
-document.getElementById("display").value = n1;
+document.getElementById("display").value = cres;
 }
 
-function doOperations(n1,n2,op){
- 
-  n1 = parseInt(n1);
-  n2 = parseInt(n2);
-  var result;
- 
-    var operation = function(){
-      
-      switch(op){
-        case '+':
-        result =  n1 + n2;
-        break;
 
-        case '-':
-        result =  n1 - n2;
-        break;
-
-        case '*':
-        result =  n1 * n2;
-        break;
-
-        case '/':
-        result =  n1 / n2;
-        break;
-      }
-      return result;
+function Calculator(n1){
+  var no = parseInt(n1);
+  function setNo(n1){
+    no = parseInt(n1);
+  }
+  function getNo(){
+    return no;
+  }
+  return {
+    
+    add: function(n2){
+      var n2 = parseInt(n2);
+      var res = getNo() + n2;
+      setNo(res);
+      return res;
+    },
+    subtract: function(n2){
+      var n2 = parseInt(n2);
+      var res = getNo() - n2;
+      setNo(res);
+      return res;
+    },
+    multiply: function(n2){
+      var n2 = parseInt(n2);
+      var res = getNo() * n2;
+      setNo(res);
+      return res;
+    },
+    devide: function(n2){
+      var n2 = parseInt(n2);
+      var res = getNo() / n2;
+      setNo(res);
+      return res;
     }
-
-
-  //operation();
-  return operation;
+  }
 }
-
-// we can also store data on local browser using sessionStorage.setItem('fopr', n2);
 
 function deleteExp(){
 
@@ -103,3 +124,5 @@ function deleteExp(){
     node.innerHTML = node.innerHTML+"<div onclick='getId(this.innerHTML);' id='item"+index+"' >"+item+"</div>";
    });
 }
+
+
